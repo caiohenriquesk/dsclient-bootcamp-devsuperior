@@ -31,5 +31,13 @@ public class ClientService {
 		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found"));
 		return new ClientDTO(entity);
 	}
+
+	@Transactional
+	public ClientDTO insert(ClientDTO dto) {
+		Client entity = new Client(dto);
+		entity = repository.save(entity);
+		
+		return new ClientDTO(entity);
+	}
 	
 }
